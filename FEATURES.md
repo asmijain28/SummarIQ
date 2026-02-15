@@ -70,7 +70,7 @@
 
 ## Planned Features (Future Enhancements)
 
-### 1. YouTube Video Support 🎥
+### 1. YouTube Video Support 
 **Description**: Extract transcripts from YouTube videos and generate study materials
 
 **Planned Capabilities**:
@@ -95,7 +95,7 @@
 
 ---
 
-### 2. Audio File Support 🎵
+### 2. Audio File Support 
 **Description**: Upload audio recordings and generate study materials
 
 **Planned Capabilities**:
@@ -120,7 +120,7 @@
 
 ---
 
-### 3. Collaborative Study Groups 👥
+### 3. Collaborative Study Groups 
 **Description**: Share documents and study materials with classmates
 
 **Planned Capabilities**:
@@ -146,7 +146,7 @@
 
 ---
 
-### 4. Progress Tracking & Analytics 📊
+### 4. Progress Tracking & Analytics 
 **Description**: Track your study progress and performance over time
 
 **Planned Capabilities**:
@@ -172,7 +172,7 @@
 
 ---
 
-### 5. Advanced Export Options 📤
+### 5. Advanced Export Options 
 **Description**: Export study materials in multiple formats
 
 **Planned Capabilities**:
@@ -198,7 +198,7 @@
 
 ---
 
-### 6. Multi-Language Support 🌍
+### 6. Multi-Language Support 
 **Description**: Support documents and generation in multiple languages
 
 **Planned Capabilities**:
@@ -223,7 +223,7 @@
 
 ---
 
-### 7. Spaced Repetition System 🔄
+### 7. Spaced Repetition System 
 **Description**: Intelligent flashcard review scheduling
 
 **Planned Capabilities**:
@@ -249,7 +249,7 @@
 
 ---
 
-### 8. OCR for Scanned Documents 📸
+### 8. OCR for Scanned Documents 
 **Description**: Full support for scanned PDFs and images
 
 **Planned Capabilities**:
@@ -376,33 +376,6 @@ POST /api/chat
 Body: { fileId: string, question: string }
 ```
 
----
 
-## Contributing
 
-Future contributors can:
-1. Pick a planned feature
-2. Create a feature branch
-3. Implement with tests
-4. Submit pull request
 
----
-
-## License
-
-MIT License - Free to use and modify
-
----
-
-## Support
-
-For issues or questions:
-- GitHub Issues
-- Email: support@summariq.com
-- Documentation: docs.summariq.com
-
----
-
-**Last Updated**: February 2026
-**Version**: 1.0.0
-**Status**: Production Ready ✅
