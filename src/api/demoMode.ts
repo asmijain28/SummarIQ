@@ -34,10 +34,13 @@ export const demoAPI = {
   },
 
   generateFlashcards: async (fileId: string, count: number) => {
+    console.log('Demo API: generateFlashcards called', { fileId, count, totalCards: demoFlashcards.length });
     await delay(1800);
+    const cards = demoFlashcards.slice(0, count);
+    console.log('Demo API: Returning flashcards', cards);
     return {
       success: true,
-      data: { flashcards: demoFlashcards.slice(0, count) }
+      data: { flashcards: cards }
     };
   },
 
