@@ -37,7 +37,7 @@ export const demoAPI = {
     await delay(1800);
     return {
       success: true,
-      data: { questions: demoFlashcards.slice(0, count) }
+      data: { flashcards: demoFlashcards.slice(0, count) }
     };
   },
 
