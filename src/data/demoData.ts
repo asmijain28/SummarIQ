@@ -59,6 +59,16 @@ export const demoFlashcards = [
   { front: 'How many layers are in the OSI model?', back: 'Seven layers', explanation: 'The OSI model has 7 layers from Physical to Application layer.' },
   { front: 'What is a Router?', back: 'Device that forwards data between networks', explanation: 'Routers direct traffic and connect different networks together.' },
   { front: 'What does LAN stand for?', back: 'Local Area Network', explanation: 'LAN connects devices in a limited geographical area like a home or office.' },
+  { front: 'What is a Firewall?', back: 'Security system that monitors network traffic', explanation: 'Firewalls protect networks by blocking unauthorized access and malicious traffic.' },
+  { front: 'What does WAN stand for?', back: 'Wide Area Network', explanation: 'WAN connects networks across large geographical distances.' },
+  { front: 'What is an IP Address?', back: 'Unique identifier for network devices', explanation: 'Every device on a network needs an IP address to communicate.' },
+  { front: 'What is the Physical Layer?', back: 'First layer of OSI model - handles hardware transmission', explanation: 'The Physical layer deals with the actual transmission of raw bits over physical media.' },
+  { front: 'What is HTTPS?', back: 'Secure version of HTTP protocol', explanation: 'HTTPS encrypts data between browser and server for secure communication.' },
+  { front: 'What is a Switch?', back: 'Device that connects devices within a network', explanation: 'Switches forward data to specific devices based on MAC addresses.' },
+  { front: 'What is Bandwidth?', back: 'Data transfer capacity of a network', explanation: 'Bandwidth determines how much data can be transmitted in a given time period.' },
+  { front: 'What is the Transport Layer?', back: 'Fourth layer of OSI - handles end-to-end connections', explanation: 'The Transport layer ensures reliable data delivery between applications.' },
+  { front: 'What is FTP?', back: 'File Transfer Protocol', explanation: 'FTP is used for transferring files between computers over a network.' },
+  { front: 'What is Network Security?', back: 'Protection of data during transmission', explanation: 'Network security involves encryption, authentication, and access control measures.' },
 ];
 
 export const demoQuiz = [
