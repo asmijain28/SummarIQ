@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+backend/node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.production
+backend/.env
+backend/.env.local
+
+# Build outputs
+dist/
+build/
+backend/dist/
+
+# Uploads (don't commit user files)
+backend/uploads/*.pdf
+backend/uploads/*.ppt
+backend/uploads/*.pptx
+backend/uploads/*.docx
+
+# Keep uploads folder but not files
+!backend/uploads/.gitkeep
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+
+# Misc
+.cache/
+.temp/
