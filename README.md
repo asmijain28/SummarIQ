@@ -7,7 +7,7 @@ This project is developed as part of a Project-Based Learning (PBL) academic req
 🌐 Live Demo
 
 Frontend (Demo Mode – UI only):
- https://asmijain28.github.io/summariq/
+ https://asmijain28.github.io/SummarIQ/
 
 GitHub Pages hosts only the frontend. Backend services are demonstrated locally.
 
