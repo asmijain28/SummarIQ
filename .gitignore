@@ -10,7 +10,6 @@ backend/.env
 backend/.env.local
 
 # Build outputs
-dist/
 build/
 backend/dist/
 
