@@ -1,38 +1,136 @@
-# SummarIQ - AI-Powered Study Assistant
+📘 SummarIQ – AI-Powered Study Assistant
 
-Transform your study materials into comprehensive notes, flashcards, quizzes, and more with the power of AI.
+SummarIQ is a software-based web application that helps students convert academic documents into structured, exam-oriented study material using modern AI services. It generates detailed notes, highlighted keywords, flashcards, quizzes, exam questions, and provides an interactive document-aware AI assistant.
 
-## 🚀 Live Demo
+This project is developed as part of a Project-Based Learning (PBL) academic requirement.
 
-- **Frontend**: https://summariq.vercel.app *(Update with your URL)*
-- **Backend API**: https://summariq-backend.onrender.com *(Update with your URL)*
-- **GitHub**: https://github.com/YOUR_USERNAME/summariq *(Update with your repo)*
+🌐 Live Demo
 
-## ✨ Features
+Frontend (Demo Mode – UI only):
+ https://YOUR_USERNAME.github.io/summariq/
 
-- **📝 AI-Generated Notes** - Three detail levels with markdown formatting
-- **🔑 Keyword Extraction** - 15-25 keywords with definitions and context
-- **🎴 Interactive Flashcards** - 20 AI-generated flashcards with explanations
-- **📊 Multiple Choice Quiz** - Adaptive length with instant feedback
-- **📋 Exam Questions** - Short, Long, and Conceptual questions with answers
-- **💬 AI Chat Assistant** - Ask questions about your document
-- **⚙️ Customization** - Adjust detail levels, highlighting, and quiz length
+Note: GitHub Pages hosts only the frontend. Backend services are demonstrated locally during evaluation.
 
-## 🛠️ Tech Stack
+-> Key Features
+-> Detailed Notes Generation
 
-**Frontend:** React, TypeScript, Vite, Tailwind CSS, Framer Motion  
-**Backend:** Node.js, Express, Groq/Gemini/OpenAI APIs  
-**Deployment:** Vercel (Frontend) + Render (Backend)
+Generates structured notes instead of short summaries
 
-## 📦 Quick Start
+Supports Short, Medium, and Detailed modes
 
-### Prerequisites
-- Node.js 16+
-- Groq API key (free at https://console.groq.com)
+Markdown-based formatting with headings and bullet points
 
-### Installation
+Processes full documents without truncation
 
-```bash
+-> Keyword Extraction & Highlighting
+
+Automatically extracts important terms from documents
+
+Provides definitions and contextual usage
+
+Highlights keywords within generated notes
+
+-> Flashcards
+
+Concept-based question–answer flashcards
+
+Flip interaction with explanations
+
+Number of flashcards adapts to document size
+
+-> Quiz (MCQs)
+
+Multiple-choice questions generated from document content
+
+Instant feedback with correct answers and explanations
+
+Customizable number of questions
+
+-> Exam-Oriented Questions
+
+Short and long descriptive questions
+
+Answers generated based on document context
+
+Designed for exam preparation
+
+-> Interactive AI Chat
+
+Users can ask questions related only to the uploaded document
+
+Context-aware responses
+
+Prevents hallucinated answers outside document scope
+
+-> Customization
+
+Control note length
+
+Adjust quiz and flashcard count
+
+Toggle keyword highlighting
+
+-> Supported File Formats
+
+PDF (text-based and scanned with OCR)
+
+PowerPoint (PPT / PPTX)
+
+Word Documents (DOCX)
+
+Maximum file size: 50 MB per file
+
+-> Technology Stack
+Frontend
+
+React 18
+
+TypeScript
+
+Vite
+
+Tailwind CSS
+
+Framer Motion
+
+Radix UI
+
+Backend
+
+Node.js
+
+Express.js
+
+Multer (file uploads)
+
+PDF-Parse (PDF text extraction)
+
+Tesseract.js (OCR for scanned PDFs)
+
+AI / APIs
+
+Groq API (LLaMA 3.3 70B – primary)
+
+Google Gemini (fallback)
+
+OpenAI (backup)
+
+Deployment
+
+GitHub Pages (frontend demo)
+
+Local backend execution for evaluation
+
+-> Running the Project Locally
+Prerequisites
+
+Node.js (v16 or above)
+
+npm
+
+API key from Groq / Gemini / OpenAI
+
+Installation
 # Clone repository
 git clone https://github.com/YOUR_USERNAME/summariq.git
 cd summariq
@@ -43,61 +141,75 @@ npm install
 # Install backend dependencies
 cd backend
 npm install
+Environment Configuration
 
-# Configure environment
-cp .env.example .env
-# Edit .env and add your GROQ_API_KEY
+Create backend/.env:
 
+PORT=5001
+AI_PROVIDER=groq
+GROQ_API_KEY=your_api_key_here
+MAX_FILE_SIZE_MB=50
+Run Application
 # Start backend
+cd backend
 node server.js
 
 # Start frontend (new terminal)
 cd ..
 npm run dev
-```
 
-Visit `http://localhost:3000`
+Open browser at:
+ http://localhost:3000
 
-## 🚀 Deployment
+-> Evaluation Summary
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for complete deployment guide.
+Supports multiple document formats and sizes
 
-**Quick steps:**
-1. Push code to GitHub
-2. Deploy backend to Render (free)
-3. Deploy frontend to Vercel (free)
-4. Add environment variables
-5. Done! 🎉
+Processes full document content without truncation
 
-## 📚 Documentation
+Generates exam-oriented learning material
 
-- [FEATURES.md](FEATURES.md) - Complete feature list and roadmap
-- [DEPLOYMENT.md](DEPLOYMENT.md) - Deployment instructions
-- Original Figma Design: https://www.figma.com/design/vPpfafjiT9bojFLqzErdEi/SummarIQ-Web-Application-Design
+Results evaluated through functional testing and manual verification
 
-## 🎯 Supported File Types
+Designed as a software system, not a trained ML model
 
-- PDF documents
-- PowerPoint (PPT, PPTX)
-- Word documents (DOCX)
-- Up to 50MB file size
+-> Privacy & Security
 
-## 🔑 API Keys
+Uploaded files are processed temporarily
 
-Get free API keys:
-- **Groq** (Recommended): https://console.groq.com
-- **Google Gemini**: https://aistudio.google.com/apikey
-- **OpenAI**: https://platform.openai.com/api-keys
+No user accounts or permanent storage
 
-## 📄 License
+API keys secured using environment variables
 
-MIT License - Free to use and modify
+File type and size validation implemented
 
-## 👨‍💻 Author
+-> Future Enhancements
 
-[Your Name]  
-GitHub: [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
+User login and document history
 
----
+Spaced repetition learning
 
-**Made with ❤️ for students everywhere**
+Mobile application
+
+Multi-language support
+
+Audio and video lecture processing
+
+-> License
+
+This project is licensed under the MIT License.
+
+ Author
+
+Your Name
+GitHub: https://github.com/YOUR_USERNAME
+
+ -> Acknowledgements
+
+Groq API
+
+Google Gemini
+
+OpenAI
+
+React & Open-source community
