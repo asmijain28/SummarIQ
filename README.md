@@ -7,11 +7,12 @@ This project is developed as part of a Project-Based Learning (PBL) academic req
 🌐 Live Demo
 
 Frontend (Demo Mode – UI only):
- https://YOUR_USERNAME.github.io/summariq/
+ https://asmijain28.github.io/summariq/
 
-Note: GitHub Pages hosts only the frontend. Backend services are demonstrated locally during evaluation.
+GitHub Pages hosts only the frontend. Backend services are demonstrated locally.
 
 -> Key Features
+
 -> Detailed Notes Generation
 
 Generates structured notes instead of short summaries
@@ -132,8 +133,8 @@ API key from Groq / Gemini / OpenAI
 
 Installation
 # Clone repository
-git clone https://github.com/YOUR_USERNAME/summariq.git
-cd summariq
+git clone https://github.com/asmijain28/SummarIQ.git
+cd SummarIQ
 
 # Install frontend dependencies
 npm install
@@ -201,8 +202,8 @@ This project is licensed under the MIT License.
 
  Author
 
-Your Name
-GitHub: https://github.com/YOUR_USERNAME
+My Name
+GitHub: https://github.com/asmijain28
 
  -> Acknowledgements
 
