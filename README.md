@@ -1,216 +1,140 @@
-📘 SummarIQ – AI-Powered Study Assistant
+# SummarIQ - AI-Powered Study Assistant
 
-SummarIQ is a software-based web application that helps students convert academic documents into structured, exam-oriented study material using modern AI services. It generates detailed notes, highlighted keywords, flashcards, quizzes, exam questions, and provides an interactive document-aware AI assistant.
+SummarIQ turns uploaded study material into exam-ready outputs: notes, keywords, flashcards, quizzes, predicted exam questions, and document-grounded AI chat.
 
-This project is developed as part of a Project-Based Learning (PBL) academic requirement.
+This project was developed as part of a Project-Based Learning (PBL) academic requirement.
 
-🌐 Live Demo
+## Live Demo
 
-Frontend (Demo Mode – UI only):
- https://asmijain28.github.io/SummarIQ/
+- Frontend demo (UI only): [https://asmijain28.github.io/SummarIQ/](https://asmijain28.github.io/SummarIQ/)
+- Backend features (upload + AI generation) run locally.
 
-GitHub Pages hosts only the frontend. Backend services are demonstrated locally.
+## Key Features
 
--> Key Features
+- Detailed notes generation (`short`, `medium`, `detailed`)
+- Keyword extraction with definitions and context
+- Flashcard generation
+- Quiz generation (MCQs)
+- Predicted exam question generation
+- Interactive AI assistant grounded in uploaded document content
+- Visual Mode with generated step images
 
--> Detailed Notes Generation
+## Supported Inputs
 
-Generates structured notes instead of short summaries
+- PDF (text-based and scanned)
+- PPTX (slide text extraction)
+- DOCX (text extraction)
+- PPT/DOC accepted at upload level; extraction quality depends on file content/format
 
-Supports Short, Medium, and Detailed modes
+## OCR and Extraction Pipeline
 
-Markdown-based formatting with headings and bullet points
+The backend now uses a shared extraction flow for **all major features** (Notes, Keywords, Flashcards, Quiz, Exam Questions, Chat):
 
-Processes full documents without truncation
+1. Native text extraction (PDF/PPTX/DOCX)
+2. Low-text detection
+3. OCR fallback for scanned PDFs (`pdfjs-dist` + `canvas` + `tesseract.js`)
+4. Cleaned text passed to AI generation routes
 
--> Keyword Extraction & Highlighting
+This means scanned/low-text PDFs are no longer limited to Notes only.
 
-Automatically extracts important terms from documents
+## Tech Stack
 
-Provides definitions and contextual usage
+### Frontend
 
-Highlights keywords within generated notes
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- Radix UI
+- Motion / Framer Motion
 
--> Flashcards
+### Backend
 
-Concept-based question–answer flashcards
+- Node.js + Express
+- Multer (uploads)
+- `pdf-parse` (PDF text)
+- `mammoth` (DOCX text)
+- `jszip` (PPTX slide XML text extraction)
+- `pdfjs-dist` + `canvas` + `tesseract.js` (OCR)
 
-Flip interaction with explanations
+### AI Providers
 
-Number of flashcards adapts to document size
+- Groq, Gemini, OpenAI (text provider fallback chain)
+- ComfyUI / Gemini Imagen / Pixazo / Pollinations for visual image generation
 
--> Quiz (MCQs)
+## Local Setup
 
-Multiple-choice questions generated from document content
+### 1) Install dependencies
 
-Instant feedback with correct answers and explanations
-
-Customizable number of questions
-
--> Exam-Oriented Questions
-
-Short and long descriptive questions
-
-Answers generated based on document context
-
-Designed for exam preparation
-
--> Interactive AI Chat
-
-Users can ask questions related only to the uploaded document
-
-Context-aware responses
-
-Prevents hallucinated answers outside document scope
-
--> Customization
-
-Control note length
-
-Adjust quiz and flashcard count
-
-Toggle keyword highlighting
-
--> Supported File Formats
-
-PDF (text-based and scanned with OCR)
-
-PowerPoint (PPT / PPTX)
-
-Word Documents (DOCX)
-
-Maximum file size: 50 MB per file
-
--> Technology Stack
-Frontend
-
-React 18
-
-TypeScript
-
-Vite
-
-Tailwind CSS
-
-Framer Motion
-
-Radix UI
-
-Backend
-
-Node.js
-
-Express.js
-
-Multer (file uploads)
-
-PDF-Parse (PDF text extraction)
-
-Tesseract.js (OCR for scanned PDFs)
-
-AI / APIs
-
-Groq API (LLaMA 3.3 70B – primary)
-
-Google Gemini (fallback)
-
-OpenAI (backup)
-
-Deployment
-
-GitHub Pages (frontend demo)
-
-Local backend execution for evaluation
-
--> Running the Project Locally
-Prerequisites
-
-Node.js (v16 or above)
-
-npm
-
-API key from Groq / Gemini / OpenAI
-
-Installation
-# Clone repository
-git clone https://github.com/asmijain28/SummarIQ.git
-cd SummarIQ
-
-# Install frontend dependencies
+```bash
+# project root (frontend)
 npm install
 
-# Install backend dependencies
+# backend
 cd backend
 npm install
-Environment Configuration
+```
 
-Create backend/.env:
+### 2) Configure environment
 
+Create/update `backend/.env`:
+
+```env
 PORT=5001
+NODE_ENV=development
+FRONTEND_URL=http://localhost:3000
+
+# Text AI providers
 AI_PROVIDER=groq
-GROQ_API_KEY=your_api_key_here
+GROQ_API_KEY=your_groq_key
+GEMINI_API_KEY=your_gemini_key_1,your_gemini_key_2
+OPENAI_API_KEY=your_openai_key
+
+# Upload limits
 MAX_FILE_SIZE_MB=50
-Run Application
-# Start backend
+MAX_SCANNED_FILE_SIZE_MB=75
+
+# OCR tuning (optional)
+OCR_MAX_PAGES=6
+OCR_SCALE=1.8
+
+# Visual image providers
+COMFYUI_URL=http://127.0.0.1:8188
+POLLINATIONS_FIRST=true
+POLLINATIONS_MODEL=flux
+
+# Optional Pixazo async endpoints
+PIXAZO_API_URL=
+PIXAZO_STATUS_URL=
+PIXAZO_API_KEY=
+PIXAZO_MODEL=flux-schnell
+```
+
+### 3) Run app
+
+```bash
+# backend
 cd backend
-node server.js
+npm run start
 
-# Start frontend (new terminal)
-cd ..
+# frontend (new terminal, project root)
 npm run dev
+```
 
-Open browser at:
- http://localhost:3000
+Open: [http://localhost:3000](http://localhost:3000)
 
--> Evaluation Summary
+## Notes
 
-Supports multiple document formats and sizes
+- `npm run start` and `node server.js` are equivalent for backend startup.
+- For auto-reload during development, use `npm run dev` in `backend`.
+- If ComfyUI/Pixazo are unavailable, image generation falls back to Pollinations/free flow.
 
-Processes full document content without truncation
+## Privacy and Security
 
-Generates exam-oriented learning material
+- Uploaded files are processed server-side for extraction/generation.
+- API keys are managed through environment variables.
+- File type and size validation are enforced at upload.
 
-Results evaluated through functional testing and manual verification
+## License
 
-Designed as a software system, not a trained ML model
-
--> Privacy & Security
-
-Uploaded files are processed temporarily
-
-No user accounts or permanent storage
-
-API keys secured using environment variables
-
-File type and size validation implemented
-
--> Future Enhancements
-
-User login and document history
-
-Spaced repetition learning
-
-Mobile application
-
-Multi-language support
-
-Audio and video lecture processing
-
--> License
-
-This project is licensed under the MIT License.
-
- Author
-
-My Name
-GitHub: https://github.com/asmijain28
-
- -> Acknowledgements
-
-Groq API
-
-Google Gemini
-
-OpenAI
-
-React & Open-source community
+MIT License

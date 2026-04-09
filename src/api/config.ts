@@ -9,4 +9,7 @@ export const API_ENDPOINTS = {
   EXAM_QUESTIONS: `${API_BASE_URL}/exam-questions`,
   CHAT: `${API_BASE_URL}/chat`,
   SUMMARY: `${API_BASE_URL}/summary`,
+  VISUALS: `${API_BASE_URL}/visuals`,
+  VISUAL_MODE: `${API_BASE_URL}/visual-mode`,
+  VISUAL_MODE_IMAGE: `${API_BASE_URL}/visual-mode/image`,
 };

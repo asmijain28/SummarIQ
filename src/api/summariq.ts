@@ -38,7 +38,15 @@ export const generateNotes = async (fileId: string, length: 'short' | 'medium' |
     body: JSON.stringify({ fileId, length })
   });
   
-  if (!response.ok) throw new Error('Notes generation failed');
+  if (!response.ok) {
+    const text = await response.text();
+    try {
+      const parsed = JSON.parse(text);
+      throw new Error(parsed.message || parsed.error || 'Notes generation failed');
+    } catch {
+      throw new Error(text || 'Notes generation failed');
+    }
+  }
   return await response.json();
 };
 
@@ -117,5 +125,54 @@ export const generateSummary = async (fileId: string, length: 'short' | 'medium'
   });
 
   if (!response.ok) throw new Error('Summary generation failed');
+  return await response.json();
+};
+
+export const generateVisuals = async (fileId: string) => {
+  const response = await fetch(API_ENDPOINTS.VISUALS, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ fileId })
+  });
+  
+  if (!response.ok) throw new Error('Visuals generation failed');
+  return await response.json();
+};
+
+export const generateVisualMode = async (notes: string, topic?: string, generateImages: boolean = false) => {
+  const response = await fetch(API_ENDPOINTS.VISUAL_MODE, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ notes, topic, generateImages })
+  });
+  
+  if (!response.ok) {
+    const text = await response.text();
+    try {
+      const parsed = JSON.parse(text);
+      throw new Error(parsed.message || parsed.error || 'Visual Mode generation failed');
+    } catch {
+      throw new Error(text || 'Visual Mode generation failed');
+    }
+  }
+  return await response.json();
+};
+
+export const generateVisualModeStepImage = async (step: any, topic?: string) => {
+  const response = await fetch(API_ENDPOINTS.VISUAL_MODE_IMAGE, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ step, topic })
+  });
+  
+  if (!response.ok) {
+    const text = await response.text();
+    try {
+      const parsed = JSON.parse(text);
+      throw new Error(parsed.message || parsed.error || 'Step image generation failed');
+    } catch {
+      throw new Error(text || 'Step image generation failed');
+    }
+  }
   return await response.json();
 };

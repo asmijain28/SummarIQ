@@ -151,6 +151,30 @@ try {
   console.error('❌ Chat route error:', error.message);
 }
 
+try {
+  const visualsRoute = require('./routes/visuals');
+  app.use('/api/visuals', visualsRoute);
+  console.log('✅ Visuals route loaded');
+} catch (error) {
+  console.error('❌ Visuals route error:', error.message);
+}
+
+try {
+  const visualModeRoute = require('./routes/visualMode');
+  app.use('/api/visual-mode', visualModeRoute);
+  console.log('✅ Visual Mode route loaded');
+} catch (error) {
+  console.error('❌ Visual Mode route error:', error.message);
+}
+
+try {
+  const visualModeImageRoute = require('./routes/visualModeImage');
+  app.use('/api/visual-mode/image', visualModeImageRoute);
+  console.log('✅ Visual Mode Image route loaded');
+} catch (error) {
+  console.error('❌ Visual Mode Image route error:', error.message);
+}
+
 // ============================================
 // ERROR HANDLING MIDDLEWARE
 // ============================================
@@ -245,3 +269,4 @@ process.on('SIGINT', () => {
 });
 
 module.exports = app;
+

@@ -42,6 +42,8 @@ const generateNotes = async () => {
 
     if (result.success) {
       setNotes(result.data.notes);
+      sessionStorage.setItem('currentNotes', result.data.notes);
+      window.dispatchEvent(new Event('summariq:notes-updated'));
     } else {
       throw new Error(result.message || 'Failed to generate notes');
     }

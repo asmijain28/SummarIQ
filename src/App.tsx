@@ -3,6 +3,7 @@ import { Navigation } from './components/Navigation';
 import { HeroSection } from './components/HeroSection';
 import { UploadSection } from './components/UploadSection';
 import { NotesSection } from './components/NotesSection';
+import { VisualModeSection } from './components/VisualModeSection';
 import { KeywordsSection } from './components/KeywordsSection';
 import { FlashcardsSection } from './components/FlashcardsSection';
 import { QuizSection } from './components/QuizSection';
@@ -28,6 +29,7 @@ export default function App() {
   const heroRef = useRef<HTMLElement | null>(null);
   const uploadRef = useRef<HTMLElement | null>(null);
   const notesRef = useRef<HTMLElement | null>(null);
+  const visualModeRef = useRef<HTMLElement | null>(null);
   const keywordsRef = useRef<HTMLElement | null>(null);
   const flashcardsRef = useRef<HTMLElement | null>(null);
   const quizRef = useRef<HTMLElement | null>(null);
@@ -39,6 +41,7 @@ export default function App() {
       home: heroRef,
       upload: uploadRef,
       notes: notesRef,
+      'visual-mode': visualModeRef,
       keywords: keywordsRef,
       flashcards: flashcardsRef,
       quiz: quizRef,
@@ -85,6 +88,8 @@ const handleFileUpload = (file: File, size: 'small' | 'medium' | 'large') => {
             format={noteFormat}
             highlightKeywords={highlightKeywords}
           />
+
+          <VisualModeSection ref={visualModeRef} />
           
           <KeywordsSection ref={keywordsRef} fileSize={fileSize} />
           

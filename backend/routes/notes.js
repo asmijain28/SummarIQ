@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 const fs = require('fs');
 const { extractText, cleanText } = require('../services/pdfService');
-const { needsOCR } = require('../services/ocrService');
+const { needsOCR, processScannedPDF } = require('../services/ocrService');
 const { generateNotes } = require('../services/aiService');
 const { smartChunk } = require('../services/chunker');
 
@@ -68,12 +68,27 @@ router.post('/', async (req, res, next) => {
       documentText = extractedData.text;
       
       if (needsOCR(extractedData)) {
-        console.log('⚠️ Document requires OCR (not fully implemented)');
-        if (documentText.length < 100) {
+        console.log('⚠️ Low extractable text detected; OCR may be required.');
+        const ext = path.extname(filePath).toLowerCase();
+        const canRunPdfOCR = ext === '.pdf' && documentText.length < 40;
+
+        if (canRunPdfOCR) {
+          try {
+            const ocrText = await processScannedPDF(filePath, extractedData.numPages || 1);
+            if (ocrText && ocrText.length > documentText.length) {
+              console.log(`✅ OCR extracted additional text (${ocrText.length} chars)`);
+              documentText = ocrText;
+            }
+          } catch (ocrError) {
+            console.warn('⚠️ OCR attempt failed:', String(ocrError?.message || ocrError));
+          }
+        }
+
+        if (documentText.length < 20) {
           return res.status(400).json({
             success: false,
-            error: 'OCR required',
-            message: 'This appears to be a scanned document. Please use a text-based PDF.'
+            error: 'Insufficient text',
+            message: 'Could not extract enough text from this file, even after OCR. Try a clearer scan or a text-based file.'
           });
         }
       }

@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
-const fs = require('fs');
-const { extractText, cleanText } = require('../services/pdfService');
 const { generateFlashcards } = require('../services/aiService');
+const { findUploadedFilePath, extractDocumentTextWithOCR } = require('../services/documentService');
 
 router.post('/', async (req, res, next) => {
   try {
@@ -28,23 +26,19 @@ router.post('/', async (req, res, next) => {
     
     console.log(`\n🎴 Generating ${flashcardCount} flashcards for file: ${fileId}`);
     
-    const uploadsDir = path.join(__dirname, '../uploads');
-    const files = fs.readdirSync(uploadsDir);
-    const targetFile = files.find(file => file.includes(fileId));
+    const filePath = findUploadedFilePath(fileId);
     
-    if (!targetFile) {
+    if (!filePath) {
       return res.status(404).json({
         success: false,
         error: 'File not found',
         message: 'The requested document does not exist'
       });
     }
-    
-    const filePath = path.join(uploadsDir, targetFile);
-    
+
     console.log('Step 1: Extracting text...');
-    const extractedData = await extractText(filePath);
-    let documentText = cleanText(extractedData.text);
+    const extracted = await extractDocumentTextWithOCR(filePath);
+    let documentText = extracted.cleanedText;
     
     if (documentText.length > 10000) {
       documentText = documentText.substring(0, 10000);
