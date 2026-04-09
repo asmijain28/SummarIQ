@@ -14,13 +14,14 @@ build/
 backend/dist/
 
 # Uploads (don't commit user files)
-backend/uploads/*.pdf
-backend/uploads/*.ppt
-backend/uploads/*.pptx
-backend/uploads/*.docx
+backend/uploads/**
 
 # Keep uploads folder but not files
+!backend/uploads/
 !backend/uploads/.gitkeep
+
+# OCR model data (large runtime file)
+backend/eng.traineddata
 
 # Logs
 *.log
